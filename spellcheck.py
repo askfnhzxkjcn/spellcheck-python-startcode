@@ -6,6 +6,28 @@
 import re  # Needed for splitting text with a regular expression
 import time
 
+#linear and binary functions
+def linearSearch(list, item):
+    for i in range(len(list)):
+        if item == list[i]:
+            return i
+    else:
+        return -1
+
+def binarySearch(list, item):
+    low = 0
+    high = len(list) - 1
+    while low <= high:
+        favg = (low + high) // 2
+        if item == list[favg]:
+            return favg
+        elif item < list[favg]:
+            high = favg - 1
+        else:
+            low = favg + 1
+    return -1
+
+
 def main():
     dictionary = loadWordsFromFile("data-files/dictionary.txt")
     aliceWords = loadWordsFromFile("data-files/AliceInWonderLand.txt")
@@ -28,11 +50,35 @@ def main():
 
         #selection
         if selection == "1":
-            print("poop")
-        
+            word = input("Please enter a word: ")
+
+            tStart = time.time()
+            i = linearSearch(dictionary, word)
+            tEnd = time.time()
+
+            if i == -1:
+                print(f"{word} is NOT in the dictionary.", tEnd - tStart, "seconds." )
+            else:
+                print(f"{word} is in the dictionary at position {i}.", tEnd - tStart, "seconds.")
+
         #selection 2
         elif selection == "2":
-            print("poop")
+
+            #input for word
+            word = input("Please enter a word: ")
+
+
+            #timer and set function to i to use returned index
+            tStart = time.time()
+            i = binarySearch(dictionary, word)
+            tEnd = time.time()
+
+            #output
+            if i == -1:
+                print(f"{word} is NOT in the dictionary.", tEnd - tStart, "seconds."  )
+            else:
+                print(f"{word} is in the dictionary at position {i}.", tEnd - tStart, "seconds.")
+
 
         #selection 3
         elif selection == "3":
@@ -49,10 +95,8 @@ def main():
     
     # Load data files into lists
     
-
-    # Print first 50 values of each list to verify contents
-    print(dictionary[0:50])
-    print(aliceWords[0:50])
+    dictionary[0:50]
+    aliceWords[0:50]
 # end main()
 
 
