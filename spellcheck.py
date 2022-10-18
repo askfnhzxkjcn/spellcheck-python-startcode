@@ -11,7 +11,6 @@ def linearSearch(list, item):
     for i in range(len(list)):
         if item == list[i]:
             return i
-    else:
         return -1
 
 def binarySearch(list, item):
