@@ -11,7 +11,7 @@ def linearSearch(list, item):
     for i in range(len(list)):
         if item == list[i]:
             return i
-        return -1
+    return -1
 
 def binarySearch(list, item):
     low = 0
@@ -39,22 +39,24 @@ def main():
         #display
         print("MAIN MENU")
         print("1: Spell Check a Word (Linear Search)")
-        print("1: Spell Check a Word (Binary Search)")
-        print("1: Spell Check Alice In Wonderland (Linear Search")
+        print("2: Spell Check a Word (Binary Search)")
+        print("3: Spell Check Alice In Wonderland (Linear Search")
         print("4: Spell Check Alice In Wonderland (Binary Search)")
         print("5: Exit")
 
-        #selection 1
-        selection = input("Unter menu selection (1-5): ")
+        #menu selection
+        selection = input("Enter menu selection (1-5): ")
 
-        #selection
+        #selection 1
         if selection == "1":
             word = input("Please enter a word: ")
 
+            #timer, case insensitize, and set function to i to use returned index
             tStart = time.time()
-            i = linearSearch(dictionary, word)
+            i = linearSearch(dictionary, word.casefold())
             tEnd = time.time()
 
+            #output
             if i == -1:
                 print(f"{word} is NOT in the dictionary.", tEnd - tStart, "seconds." )
             else:
@@ -66,10 +68,9 @@ def main():
             #input for word
             word = input("Please enter a word: ")
 
-
-            #timer and set function to i to use returned index
+            #timer, case insensitize, and set function to i to use returned index
             tStart = time.time()
-            i = binarySearch(dictionary, word)
+            i = binarySearch(dictionary, word.casefold())
             tEnd = time.time()
 
             #output
@@ -81,7 +82,47 @@ def main():
 
         #selection 3
         elif selection == "3":
-            print("poop")
+
+            #find out search algorithm
+            sAlg = input("What search algorithm (Linear/Binary) will you use: ")
+
+            #make selection caps insensitive
+            inpCI = sAlg.casefold()
+
+            #output
+            if inpCI == "linear":
+
+                #counter
+                n = 0
+
+                #search loop and timer
+                tStart = time.time()
+                for i in range(len(aliceWords)):
+
+                    if linearSearch(dictionary, i) == -1:
+                        n+=1
+                tEnd = time.time()
+                
+                #output
+                print(f"there are {n} words from Alice in Wonderland that are not in the dictionary.", tEnd - tStart, "seconds.")
+
+            elif inpCI == "binary":
+
+                #counter
+                n = 0
+
+                #search loop and timer
+                tStart = time.time()
+                for i in range(len(aliceWords)):
+
+                    if binarySearch(dictionary, i) == -1:
+                        n+=1
+                tEnd = time.time()
+
+                #output
+                print(f"there are {n} words from Alice in Wonderland that are not in the dictionary.", tEnd - tStart, "seconds.")
+
+
 
         #selection 4
         elif selection == "4":
