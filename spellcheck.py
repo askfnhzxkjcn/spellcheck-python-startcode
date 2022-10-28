@@ -40,7 +40,7 @@ def main():
         print("MAIN MENU")
         print("1: Spell Check a Word (Linear Search)")
         print("2: Spell Check a Word (Binary Search)")
-        print("3: Spell Check Alice In Wonderland (Linear Search")
+        print("3: Spell Check Alice In Wonderland (Linear Search)")
         print("4: Spell Check Alice In Wonderland (Binary Search)")
         print("5: Exit")
 
@@ -83,50 +83,37 @@ def main():
         #selection 3
         elif selection == "3":
 
-            #find out search algorithm
-            sAlg = input("What search algorithm (Linear/Binary) will you use: ")
+            #counter
+            n = 0
 
-            #make selection caps insensitive
-            inpCI = sAlg.casefold()
+            #search loop and timer
+            tStart = time.time()
+            for i in range(len(aliceWords)):
 
+                if linearSearch(dictionary, i) == -1:
+                    n+=1
+            tEnd = time.time()
+            
             #output
-            if inpCI == "linear":
-
-                #counter
-                n = 0
-
-                #search loop and timer
-                tStart = time.time()
-                for i in range(len(aliceWords)):
-
-                    if linearSearch(dictionary, i) == -1:
-                        n+=1
-                tEnd = time.time()
-                
-                #output
-                print(f"there are {n} words from Alice in Wonderland that are not in the dictionary.", tEnd - tStart, "seconds.")
-
-            elif inpCI == "binary":
-
-                #counter
-                n = 0
-
-                #search loop and timer
-                tStart = time.time()
-                for i in range(len(aliceWords)):
-
-                    if binarySearch(dictionary, i) == -1:
-                        n+=1
-                tEnd = time.time()
-
-                #output
-                print(f"there are {n} words from Alice in Wonderland that are not in the dictionary.", tEnd - tStart, "seconds.")
-
-
+            print(f"there are {n} words from Alice in Wonderland that are not in the dictionary.", tEnd - tStart, "seconds.")
 
         #selection 4
         elif selection == "4":
-            print("poop")
+
+            #counter
+            n = 0
+            
+            #search loop and timer
+            tStart = time.time()
+            for i in range(len(aliceWords)):
+                srch = binarySearch(dictionary, i)
+
+                if srch == -1:
+                     n+=1
+            tEnd = time.time()
+
+            #output
+            print(f"there are {n} words from Alice in Wonderland that are not in the dictionary.", tEnd - tStart, "seconds.")
 
         #selection 5
         else:
