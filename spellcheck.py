@@ -44,14 +44,16 @@ def main():
         print("4: Spell Check Alice In Wonderland (Binary Search)")
         print("5: Exit")
 
-        #menu selection
+        #menu selection 
         selection = input("Enter menu selection (1-5): ")
 
         #selection 1
         if selection == "1":
+
+            #input for word and case insensitize
             word = input("Please enter a word: ").lower()
 
-            #timer, case insensitize, and set function to i to use returned index
+            #timer and set function to i to use returned index
             tStart = time.time()
             i = linearSearch(dictionary, word)
             tEnd = time.time()
@@ -65,10 +67,10 @@ def main():
         #selection 2
         elif selection == "2":
 
-            #input for word
+            #input for word and case insensitize
             word = input("Please enter a word: ").lower()
 
-            #timer, case insensitize, and set function to i to use returned index
+            #timer and set function to i to use returned index
             tStart = time.time()
             i = binarySearch(dictionary, word)
             tEnd = time.time()
