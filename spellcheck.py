@@ -17,13 +17,13 @@ def binarySearch(list, item):
     low = 0
     high = len(list) - 1
     while low <= high:
-        favg = (low + high) // 2
-        if item == list[favg]:
-            return favg
-        elif item < list[favg]:
-            high = favg - 1
+        mid = (low + high) // 2
+        if item == list[mid]:
+            return mid
+        elif item < list[mid]:
+            high = mid - 1
         else:
-            low = favg + 1
+            low = mid + 1
     return -1
 
 
@@ -49,11 +49,11 @@ def main():
 
         #selection 1
         if selection == "1":
-            word = input("Please enter a word: ")
+            word = input("Please enter a word: ").lower()
 
             #timer, case insensitize, and set function to i to use returned index
             tStart = time.time()
-            i = linearSearch(dictionary, word.casefold())
+            i = linearSearch(dictionary, word)
             tEnd = time.time()
 
             #output
@@ -66,11 +66,11 @@ def main():
         elif selection == "2":
 
             #input for word
-            word = input("Please enter a word: ")
+            word = input("Please enter a word: ").lower()
 
             #timer, case insensitize, and set function to i to use returned index
             tStart = time.time()
-            i = binarySearch(dictionary, word.casefold())
+            i = binarySearch(dictionary, word)
             tEnd = time.time()
 
             #output
@@ -88,7 +88,7 @@ def main():
 
             #search loop and timer
             tStart = time.time()
-            for i in range(len(aliceWords)):
+            for i in aliceWords:
 
                 if linearSearch(dictionary, i) == -1:
                     n+=1
@@ -105,9 +105,9 @@ def main():
             
             #search loop and timer
             tStart = time.time()
-            for i in range(len(aliceWords)):
+            for i in aliceWords:
                 srch = binarySearch(dictionary, i)
-
+                
                 if srch == -1:
                      n+=1
             tEnd = time.time()
